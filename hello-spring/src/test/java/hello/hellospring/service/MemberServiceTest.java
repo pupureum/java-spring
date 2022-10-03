@@ -65,17 +65,9 @@ class MemberServiceTest {
 
         // 위의 경우 때문에 try catch문을 작성하는것이 애매
         // assertThrows를 사용하자 join 했을 때, IllegalStateException 예외가 터져야 한다.
-        IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
+        IllegalStateException e = assertThrows(IllegalStateException.class,
+                () -> memberService.join(member2));
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다."); //에러 메세지 비교
-        //then
 
-    }
-
-    @Test
-    void findMembers() {
-    }
-
-    @Test
-    void findOne() {
     }
 }

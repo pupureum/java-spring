@@ -1,8 +1,10 @@
 package plee.board.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import plee.board.dto.BoardDto;
 import plee.board.service.BoardService;
 
@@ -58,5 +60,11 @@ public class BoardController {
     public String delete(@PathVariable("id") Long id) {
         boardService.deletePost(id);
         return "redirect:/";
+    }
+
+    @ExceptionHandler(value = RuntimeException.class)
+    public String handle(RuntimeException ex) {
+
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 }

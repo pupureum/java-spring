@@ -8,6 +8,7 @@ import plee.board.dto.BoardDto;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BoardService {
@@ -56,6 +57,11 @@ public class BoardService {
 
     @Transactional
     public void deletePost(Long id) {
+        Optional<Board> result = boardRepository.findById(id);
+
+        if (!result.isPresent()) {
+            throw new IllegalStateException("이미 삭제된 글입니다.");
+        }
         boardRepository.deleteById(id);
     }
 }

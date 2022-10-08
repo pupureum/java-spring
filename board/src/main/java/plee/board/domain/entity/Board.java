@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 public class Board {
     @Id
@@ -43,4 +42,5 @@ public class Board {
         this.title = title;
         this.content = content;
     }
+    protected Board() {}
 }
